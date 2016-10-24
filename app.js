@@ -25,7 +25,7 @@
 var express = require('express');
 var path = require('path');
 
-// var favicon = require('serve-favicon');
+fs = require('fs');
 var favicon = require(fs.readFileSync('./lib/favicon.ico'));
 
 var logger = require('morgan');
