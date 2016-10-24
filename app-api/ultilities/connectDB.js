@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var gracefulShutdown;
-var dbUrl = 'mongodb://localhost/toDoTask';
+var dbUrl = 'mongodb://localhost:27017/toDoTask';
 
 module.exports = function () {
 
