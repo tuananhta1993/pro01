@@ -2,19 +2,64 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Test</title>
-        <style>
-            body {
-                padding: 50px;
-                font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-            }
-
-            a {
-                color: #00B7FF;
-            }
-        </style>
+        <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="angular-bootstrap/ui-bootstrap-csp.css">
+        <link rel="stylesheet" href="angular-toastr/dist/angular-toastr.min.css">
+        <link rel="stylesheet" href="stylesheets/style.css">
     </head>
-    <body>
-        <h1>Hello World!</h1>
+    <body ng-app="restApp">
+
+        <div id="main" ng-controller="mainController">
+            <h1>Todos</h1>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" class="form-control" placeholder="Add todo" ng-model="newTask">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-md-4">
+                    <button type="submit" class="btn btn-success" ng-click="add()">Add</button>
+                </div>
+            </div>
+
+            <div>
+                <ul class="list-unstyled">
+                    <li ng-repeat="task in tasks">
+                        {{ task.title }}
+                        -
+                        <button class="btn btn-xs btn-info" ng-click="edit(task.title)">Edit</button>
+                        <button class="btn btn-xs btn-danger" ng-click="remove(task.title)">Remove</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <script type="text/ng-template" id="editTask.html">
+            <div class="modal-header">
+                <h3 class="modal-title">Edit the tast!</h3>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="form-control" ng-value="titleToEdit" ng-model="titleToEdit"/>
+                <br/>
+                <div class="row">
+                    <div class="col-md-4">
+                        <button class="btn btn-info" ng-click="edit()">Edit</button>
+                        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+        <script src="angular/angular.min.js"></script>
+        <script src="angular-animate/angular-animate.min.js"></script>
+        <script src="angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        <script src="angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+        <script src="javascripts/app.js"></script>
     </body>
 </html>

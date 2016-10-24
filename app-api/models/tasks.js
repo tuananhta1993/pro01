@@ -7,8 +7,7 @@ var Tasks = new Schema({
         unique: true,
         required: true,
         dropDups: true
-    },
-    description: String
+    }
 });
 
 module.exports = mongoose.model('tasks', Tasks);

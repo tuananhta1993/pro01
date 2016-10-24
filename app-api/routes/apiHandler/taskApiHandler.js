@@ -41,8 +41,7 @@ var getTaskByTitle = function(req, res) {
 
 var addTask = function(req, res) {
     var task = new Tasks({
-        title: req.body.title,
-        description: req.body.description
+        title: req.body.title
     });
     task.save(function (err) {
         if(err) {
@@ -53,13 +52,14 @@ var addTask = function(req, res) {
 };
 
 var editTask = function(req, res) {
-    Tasks.findById(req.body._id, function (err, task) {
+    Tasks.findOne({
+        title: req.body.oldTitle
+    }, function (err, task) {
         if(err || !task) {
             return sendResponse(res, 404, 'Not found!');
         }
 
-        task.title = req.body.title;
-        task.description = req.body.description;
+        task.title = req.body.newTitle;
         task.save(function (err) {
             if(err) {
                 return sendResponse(res, 400, err);
@@ -70,9 +70,11 @@ var editTask = function(req, res) {
 };
 
 var deleteTask = function(req, res) {
-    Tasks.findByIdAndRemove(req.body._id, function(err, task) {
-        if (err || !task) {
-            return sendResponse(res, 404, err);
+    Tasks.remove({
+        title: req.body.title
+    }, function (err) {
+        if (err) {
+            return sendResponse(res, 400, err);
         }
         sendResponse(res, 200, 'Delete done!');
     });
