@@ -36,7 +36,7 @@ var api = require('./app-api/routes/api');
 var app = express();
 
 var connectDB = require('./app-api/ultilities/connectDB');
-connectDB();
+connectDB(;
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
