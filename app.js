@@ -38,10 +38,6 @@ var app = express();
 var connectDB = require('./app-api/ultilities/connectDB');
 connectDB();
 
-console.log("connected");
-console.log("Listening to port 3000");
-
-app.listen(3000);
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
